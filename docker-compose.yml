@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=piggy
+      - POSTGRES_PASSWORD=piggy
+      - POSTGRES_DB=piggy
+    ports:
+      - "5432:5432"
+  adminer:
+    image: adminer
+    links:
+      - db
+    ports:
+      - 8080:8080
+  metabase:
+    image: metabase/metabase
+    links:
+      - db
+    ports:
+      - 3000:3000
